@@ -2,7 +2,7 @@ const express = require('express');
 const chalk = require('chalk');
 const debug = require('debug')('app');
 const bodyParser = require('body-parser');
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 const morgan = require('morgan');
 const app = express(); 
 
