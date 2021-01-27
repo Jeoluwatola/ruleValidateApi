@@ -1,1 +1,1 @@
-# ruleValidateApi
+# simple rule-validation API
