@@ -153,7 +153,7 @@ app.post('/validate-rule', (req, res) => {
         );
     }
     // not equal to function
-    if (condition == "neq") {
+    else if (condition == "neq") {
         if (condition_value != data[field]) {
             res.status(200).json(success);
         } else (
@@ -161,7 +161,7 @@ app.post('/validate-rule', (req, res) => {
         );
     }
     // greater than function
-    if (condition == "gt") {
+    else if (condition == "gt") {
         if (data[field] > condition_value) {
             res.status(200).json(success);
         } else (
@@ -169,7 +169,7 @@ app.post('/validate-rule', (req, res) => {
         );
     }
     // greater than or equal to function
-    if (condition == "gte") {
+    else if (condition == "gte") {
         if (data[field] >= condition_value) {
             res.status(200).json(success);
         } else (
@@ -177,7 +177,7 @@ app.post('/validate-rule', (req, res) => {
         );
     }
     //contains function
-    if (condition == "contains") { 
+    else if (condition == "contains") { 
         if (data[field].indexOf(condition_value) > -1) {
             res.status(200).json(success);
         } else (
