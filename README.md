@@ -1,1 +1,1 @@
-# simple rule-validation API built with mode.js
+# simple rule-validation API built with node.js
