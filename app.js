@@ -40,14 +40,14 @@ app.post('/validate-rule', (req, res) => {
     const head = { rule: rule, data: data }
 
     // checking that rule and data exist
-    for (var i = 0; i < 2; i++) {
+    for (let i = 0; i < 2; i++) {
         if (!Object.values(head)[i]) {
             const e = getKey(head, Object.values(head)[i])
             res.status(400).json({
-                message: e + " is required.",
+                message: `${e} +  is required.`,
                 status: "error",
                 data: null
-            });
+            });            
         }
     }
     // //checking that rule is an object    
@@ -58,12 +58,13 @@ app.post('/validate-rule', (req, res) => {
             data: null,
         });
     }
+
     const field = rule.field;
     const condition = rule.condition;
     const condition_value = rule.condition_value;
     const fields = { field: field, condition: condition, condition_value: condition_value }
     const success = {
-        message: "field " + field + " successfully validated.",
+        message: `field ${field} successfully validated.`,
         status: "success",
         data: {
             validation: {
@@ -77,7 +78,7 @@ app.post('/validate-rule', (req, res) => {
     }
     
     const failed = {
-        message: "field " + field + " failed validation.",
+        message: `field ${field} failed validation.`,
         status: "success",
         data: {
             validation: {
@@ -91,11 +92,11 @@ app.post('/validate-rule', (req, res) => {
     }
 
     //checking that fields in rule exist
-    for (var i = 0; i < 3; i++) {        
+    for (let i = 0; i < 3; i++) {        
         if (!Object.values(fields)[i]) {
             const f = getKey(fields, Object.values(fields)[i])            
             res.status(400).json({
-                message: f + " is required.",
+                message:`${f} is required.`,
                 status: "error",
                 data: null
             });
@@ -137,7 +138,7 @@ app.post('/validate-rule', (req, res) => {
     //checking that field specified in rule object is in data   
     else if (!data[field]) {
         res.status(400).json({
-            message: "field " + field + " is missing from data.",
+            message: `field ${field} is missing from data.`,
             status: "error",
             data: null
         });
@@ -199,5 +200,5 @@ app.use((error, req, res, next) => {
 });
 
 app.listen(port, () => {
-    console.log("Listening on port " + chalk.green(port))
+    console.log(`Listening on port ${port}` )
 })
