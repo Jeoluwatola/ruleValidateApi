@@ -127,7 +127,7 @@ app.post('/validate-rule', (req, res) => {
             data: null
         });
     }
-    //checking that field specified in rule object is in data   
+    //checking that field specified in rule object is in data    
     else if (!data[field]) {
         res.status(400).json({
             message: `field ${field} is missing from data.`,
