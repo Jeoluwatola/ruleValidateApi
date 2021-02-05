@@ -18,11 +18,6 @@ const info =
     }
 }
 
-//function to get key using value  
-function getKey(object, value) {
-    return Object.keys(object).find(key => object[key] === value);
-}
-
 app.use(bodyParser.json());
 app.use(morgan('tiny'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -42,7 +37,7 @@ app.post('/validate-rule', (req, res) => {
     // checking that rule and data exist
     for (let i = 0; i < 2; i++) {
         if (!Object.values(head)[i]) {
-            const e = getKey(head, Object.values(head)[i])
+            let e = Object.keys(head)[i];
             res.status(400).json({
                 message: `${e} +  is required.`,
                 status: "error",
@@ -75,8 +70,7 @@ app.post('/validate-rule', (req, res) => {
                 condition_value: condition_value
             },
         }
-    }
-    
+    }    
     const failed = {
         message: `field ${field} failed validation.`,
         status: "success",
@@ -90,11 +84,10 @@ app.post('/validate-rule', (req, res) => {
             },
         }
     }
-
     //checking that fields in rule exist
     for (let i = 0; i < 3; i++) {        
         if (!Object.values(fields)[i]) {
-            const f = getKey(fields, Object.values(fields)[i])            
+            let f = Object.keys(fields)[i]            
             res.status(400).json({
                 message:`${f} is required.`,
                 status: "error",
@@ -102,7 +95,6 @@ app.post('/validate-rule', (req, res) => {
             });
         }
     }
-
     //checking that field is a string
     if ((typeof (field) != "string")) {
         res.status(400).json({
